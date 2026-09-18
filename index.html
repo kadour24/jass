@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You ❤️</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  min-height:100vh;
+  font-family:system-ui,-apple-system,Segoe UI,sans-serif;
+  background:linear-gradient(135deg,#fff0f5,#ffe4ec,#fff8f9);
+  color:#4a2632;
+  display:flex;align-items:center;justify-content:center;
+  overflow-x:hidden;padding:24px;
+}
+.card{
+  width:min(430px,100%);
+  background:rgba(255,255,255,.82);
+  backdrop-filter:blur(14px);
+  border:1px solid rgba(255,255,255,.8);
+  border-radius:28px;
+  padding:24px;
+  text-align:center;
+  box-shadow:0 20px 60px rgba(100,35,60,.15);
+  animation:up .8s ease;
+}
+.photo{
+  width:180px;height:180px;object-fit:cover;
+  border-radius:50%;
+  border:6px solid white;
+  box-shadow:0 10px 30px rgba(100,35,60,.18);
+  margin:0 auto 20px;
+}
+h1{font-size:30px;margin-bottom:10px}
+.subtitle{font-size:15px;opacity:.72;margin-bottom:22px}
+.message{
+  background:#fff6f8;
+  border-radius:20px;padding:20px;
+  line-height:1.7;font-size:15px;
+  margin-bottom:20px;
+}
+button{
+  border:0;border-radius:999px;padding:13px 22px;
+  font-size:15px;font-weight:700;cursor:pointer;
+  transition:.25s;
+}
+#open{background:#e85d83;color:white;box-shadow:0 8px 20px rgba(232,93,131,.25)}
+#open:hover{transform:translateY(-2px)}
+.hidden{display:none}
+.heart{font-size:32px;margin:8px 0 14px;animation:pulse 1.5s infinite}
+.small{font-size:13px;opacity:.6;margin-top:16px}
+@keyframes up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+@keyframes pulse{50%{transform:scale(1.12)}}
+.confetti{position:fixed;top:-20px;animation:fall linear forwards;pointer-events:none}
+@keyframes fall{to{transform:translateY(110vh) rotate(360deg);opacity:0}}
+</style>
+</head>
+<body>
+
+<main class="card">
+  <img class="photo" src="3469.jpg" alt="A special photo">
+
+  <div class="heart">❤️</div>
+  <h1>Hey you...</h1>
+  <p class="subtitle">I made this little page because I have something to say.</p>
+
+  <button id="open">Open my message 💌</button>
+
+  <section id="message" class="hidden">
+    <div class="message">
+      I know you're mad at me, and honestly, I understand.<br><br>
+      I'm really sorry for what happened. I never wanted to hurt you
+      or make you feel bad. You mean a lot to me, and I don't want
+      one bad moment to hide all the good between us.<br><br>
+      I won't make excuses. I just want you to know that I'm sorry
+      and that I care about how you feel. ❤️<br><br>
+      Take your time. I just wanted to say it properly.
+    </div>
+
+    <button id="peace" style="background:#4a2632;color:white">
+      Can we make peace? 🤍
+    </button>
+
+    <p id="reply" class="small hidden">
+      Okay... I'll take that as a tiny step toward peace 🥹❤️
+    </p>
+  </section>
+</main>
+
+<script>
+const openBtn=document.getElementById("open");
+const message=document.getElementById("message");
+const peace=document.getElementById("peace");
+const reply=document.getElementById("reply");
+
+openBtn.onclick=()=>{
+  openBtn.style.display="none";
+  message.classList.remove("hidden");
+};
+
+peace.onclick=()=>{
+  reply.classList.remove("hidden");
+  for(let i=0;i<24;i++){
+    const h=document.createElement("div");
+    h.className="confetti";
+    h.textContent=["❤️","💕","✨","🤍"][Math.floor(Math.random()*4)];
+    h.style.left=Math.random()*100+"vw";
+    h.style.fontSize=(16+Math.random()*18)+"px";
+    h.style.animationDuration=(2+Math.random()*2)+"s";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),4500);
+  }
+};
+</script>
+</body>
+</html>
